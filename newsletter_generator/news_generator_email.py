@@ -54,32 +54,32 @@ def create_highlights_dict(df, index):
     Returns:
         dict: A dictionary with highlight configuration values.
     """
-    return {
+    highlight_config_dict= {
         'NEWS_HIGHLIGHT_TITLE': f"ID: {int(df.at[index, 'ID'])}",
         'HIGHLIGHT_LINK': df.at[index, 'Link_to_folder'],
         'HIGHLIGHT_IMAGE': df.at[index, 'Link_to_pic'].replace("open?id", "uc?export=view&id"),
         'HIGHLIGHT_TEXT': df.at[index, 'Comentarios'],
         'HIGHLIGHT_FOLDER_LINK': df.at[index, 'Link_to_folder']
     }
-    return highlight_config_dict
+    return highlight_config_dict    
 
-def create_content_dict(df, x):
+def create_content_dict(df, index):
     """
     Creates a dictionary with content configuration values for the newsletter.
     
     Args:
         df (pd.DataFrame): The dataframe containing the data.
-        x (int): The index of the row to extract data from.
+        index (int): The index of the row to extract data from.
     
     Returns:
         dict: A dictionary with content configuration values.
     """
     highlight_content_dict= {
-        'NEWS_HIGHLIGHT_TITLE': 'Oferta:  '+str(x)+'   ID:'+str(df.loc[x]['ID'].astype(int)),
-        'HIGHLIGHT_LINK': df.loc[x]['Link_to_folder'],
-        'HIGHLIGHT_IMAGE': df.loc[x]['Link_to_pic'].replace("open?id", "uc?export=view&id"),
-        'HIGHLIGHT_TEXT': df.loc[x]['Comentarios'],
-        'HIGHLIGHT_FOLDER_LINK': df.loc[x]['Link_to_folder']
+        'NEWS_HIGHLIGHT_TITLE': f"Oferta: {index}   ID: {int(df.at[index, 'ID'])}",
+        'HIGHLIGHT_LINK': df.at[index, 'Link_to_folder'],
+        'HIGHLIGHT_IMAGE': df.at[index, 'Link_to_pic'].replace("open?id", "uc?export=view&id"),
+        'HIGHLIGHT_TEXT': df.at[index, 'Comentarios'],
+        'HIGHLIGHT_FOLDER_LINK': df.at[index, 'Link_to_folder']
     }
     return highlight_content_dict
 
